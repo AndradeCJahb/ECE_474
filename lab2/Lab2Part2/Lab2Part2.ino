@@ -18,8 +18,13 @@ const unsigned long interval = 1000000; // 1 second in microseconds
 
 void setup() {
  // Initialize the LED pin as an output
- pinMode(LED_PIN, OUTPUT);
- digitalWrite(LED_PIN, LOW); // Ensure the LED is off to start
+ PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[LED_PIN], PIN_FUNC_GPIO);
+ *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << LED_PIN);
+
+ *((volatile uint32_t*) GPIO_OUT_REG) &= ~(1 << LED_PIN); // Ensure the LED is off to start
+ 
+ TIMG_T0CONFIG_REG(0) = 32'b111_01100101_
+
  timer = timerBegin(0, 80, true); // Timer 0, prescaler 80, count up from 0
  timerStart(timer); // Start the timer
 }
