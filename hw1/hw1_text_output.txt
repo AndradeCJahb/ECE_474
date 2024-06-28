@@ -1,0 +1,194 @@
+03:58:37.851 -> Random seed:  101 
+03:58:37.851 -> Problem 1.1 Test Results: 
+03:58:37.851 ->  1 
+03:58:37.851 ->  2 
+03:58:37.851 ->  3 
+03:58:37.851 ->  4 
+03:58:37.851 ->  5 
+03:58:37.851 ->  6 
+03:58:37.851 ->  7 
+03:58:37.851 ->  8 
+03:58:37.851 ->  9 
+03:58:37.851 ->  10 
+03:58:37.851 -> Problem 1.2 Test Results: 
+03:58:37.851 ->  1 
+03:58:37.851 ->  2 
+03:58:37.851 ->  3 
+03:58:37.851 ->  4 
+03:58:37.851 ->  5 
+03:58:37.851 ->  6 
+03:58:37.851 ->  7 
+03:58:37.851 ->  8 
+03:58:37.851 ->  9 
+03:58:37.851 ->  10 
+03:58:37.851 ->  55  385 
+03:58:37.851 -> Problem 1.3 Test Results:
+03:58:37.851 -> sum:  55 
+03:58:37.851 -> sum of squares:  385 
+03:58:37.851 -> Problem 1.4 Test Results: 
+03:58:37.851 -> sum:                 55 
+03:58:37.851 -> sum of squares:      385 
+03:58:37.851 -> Problem 2.1 Test Results: 
+03:58:37.851 ->  [ 10   1 ]  [ 1   3 ]  [ 7   2 ]  [ 5   4 ]  [ 9   1 ]  [ 13   2 ]  [ 13   1 ] 
+03:58:37.851 ->  [ 4   4 ]  [ 5   1 ]  [ 3   4 ]  [ 8   2 ]  [ 7   4 ]  [ 12   3 ]  [ 4   2 ] 
+03:58:37.897 ->  [ 10   3 ]  [ 2   2 ]  [ 9   2 ]  [ 6   1 ]  [ 1   4 ]  [ 12   2 ]  [ 8   3 ] 
+03:58:37.897 ->  [ 6   3 ]  [ 8   4 ]  [ 11   2 ]  [ 12   1 ]  [ 5   3 ]  [ 11   1 ]  [ 11   3 ] 
+03:58:37.897 ->  [ 1   1 ]  [ 9   3 ]  [ 2   3 ]  [ 5   2 ]  [ 4   3 ]  [ 7   1 ]  [ 2   4 ] 
+03:58:37.897 ->  [ 2   1 ]  [ 6   2 ]  [ 6   4 ]  [ 13   3 ]  [ 3   1 ]  [ 8   1 ]  [ 4   1 ] 
+03:58:37.897 ->  [ 11   4 ]  [ 7   3 ]  [ 10   2 ]  [ 3   3 ]  [ 12   4 ]  [ 13   4 ]  [ 10   4 ] 
+03:58:37.897 ->  [ 3   2 ]  [ 1   2 ]  [ 9   4 ] 
+03:58:37.897 -> Problem 2.2  Test Results: 
+03:58:37.897 ->    2.2.a
+03:58:37.897 ->  check 1 card error:  1 
+03:58:37.897 ->  check 1 card error:  4 
+03:58:37.897 ->    2.2.b
+03:58:37.897 ->  0xFF is not a valid card
+03:58:37.897 -> 8-bit version of Ace of Spades is a VALID card.
+03:58:37.897 ->    2.2.c,d
+03:58:37.897 -> card:  1    suit:  1 
+03:58:37.897 -> card:  1    suit:  2 
+03:58:37.897 -> card:  1    suit:  3 
+03:58:37.897 -> card:  1    suit:  4 
+03:58:37.897 -> card:  11    suit:  2 
+03:58:37.897 -> card:  12    suit:  2 
+03:58:37.897 -> card:  13    suit:  4 
+03:58:37.897 -> Part 3.1 Test Results:
+03:58:37.897 ->  >>>> 0 :  1  1 Ace of Hearts
+03:58:37.897 ->  >>>> 1 :  1  2 Ace of Diamonds
+03:58:37.897 ->  >>>> 2 :  1  3 Ace of Clubs
+03:58:37.897 ->  >>>> 3 :  1  4 Ace of Spades
+03:58:37.897 ->  >>>> 4 :  11  2 Jack of Diamonds
+03:58:37.897 ->  >>>> 5 :  12  2 Queen of Diamonds
+03:58:37.897 ->  >>>> 6 :  13  4 King of Spades
+03:58:37.897 -> 
+03:58:37.897 -> Part 3.2 Test Results:
+03:58:37.897 -> Test the deal() function
+03:58:37.897 -> 
+03:58:37.897 -> 
+03:58:37.897 -> ----testing deal: hand:  0 
+03:58:37.897 -> Deck count:  0 
+03:58:37.897 -> --------dealt hand: 
+03:58:37.897 -> the hand:
+03:58:37.897 -> 10 of Hearts
+03:58:37.897 -> Ace of Clubs
+03:58:37.897 -> 7 of Diamonds
+03:58:37.897 -> 5 of Spades
+03:58:37.897 -> 9 of Hearts
+03:58:37.897 -> King of Diamonds
+03:58:37.897 -> King of Hearts
+03:58:37.897 -> 
+03:58:37.897 -> 
+03:58:37.897 -> 
+03:58:37.897 -> ----testing deal: hand:  1
+03:58:37.897 -> Deck count:  7 
+03:58:37.897 -> --------dealt hand: 
+03:58:37.897 -> the hand:
+03:58:37.897 -> 4 of Spades
+03:58:37.897 -> 5 of Hearts
+03:58:37.897 -> 3 of Spades
+03:58:37.897 -> 8 of Diamonds
+03:58:37.897 -> 7 of Spades
+03:58:37.897 -> Queen of Clubs
+03:58:37.897 -> 4 of Diamonds
+03:58:37.897 -> 
+03:58:37.897 -> 
+03:58:37.897 -> 
+03:58:37.897 -> ----testing deal: hand:  2 
+03:58:37.897 -> Deck count:  14 
+03:58:37.897 -> --------dealt hand: 
+03:58:37.897 -> the hand:
+03:58:37.897 -> 10 of Clubs
+03:58:37.897 -> 2 of Diamonds
+03:58:37.897 -> 9 of Diamonds
+03:58:37.897 -> 6 of Hearts
+03:58:37.897 -> Ace of Spades
+03:58:37.897 -> Queen of Diamonds
+03:58:37.897 -> 8 of Clubs
+03:58:37.897 -> 
+03:58:37.897 -> Part 3.3 Test Results:
+03:58:37.897 -> Test the finding pokerhands function(s).
+03:58:37.897 ->  I have  7  new hands
+03:58:37.897 -> I found 1 pairs in hand 0 
+03:58:37.897 -> I found 0 three-of-a-kinds in hand 0 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 0 
+03:58:37.897 -> Hand 0 the hand:
+03:58:37.897 -> 10 of Hearts
+03:58:37.897 -> Ace of Clubs
+03:58:37.897 -> 7 of Diamonds
+03:58:37.897 -> 5 of Spades
+03:58:37.897 -> 9 of Hearts
+03:58:37.897 -> King of Diamonds
+03:58:37.897 -> King of Hearts
+03:58:37.897 -> 
+03:58:37.897 -> I found 1 pairs in hand 1 
+03:58:37.897 -> I found 0 three-of-a-kinds in hand 1 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 1 
+03:58:37.897 -> Hand 1 the hand:
+03:58:37.897 -> 4 of Spades
+03:58:37.897 -> 5 of Hearts
+03:58:37.897 -> 3 of Spades
+03:58:37.897 -> 8 of Diamonds
+03:58:37.897 -> 7 of Spades
+03:58:37.897 -> Queen of Clubs
+03:58:37.897 -> 4 of Diamonds
+03:58:37.897 -> 
+03:58:37.897 -> I found 0 pairs in hand 2 
+03:58:37.897 -> I found 0 three-of-a-kinds in hand 2 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 2 
+03:58:37.897 -> Hand 2 the hand:
+03:58:37.897 -> 10 of Clubs
+03:58:37.897 -> 2 of Diamonds
+03:58:37.897 -> 9 of Diamonds
+03:58:37.897 -> 6 of Hearts
+03:58:37.897 -> Ace of Spades
+03:58:37.897 -> Queen of Diamonds
+03:58:37.897 -> 8 of Clubs
+03:58:37.897 -> 
+03:58:37.897 -> I found 2 pairs in hand 3 
+03:58:37.897 -> I found 1 three-of-a-kinds in hand 3 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 3 
+03:58:37.897 -> Hand 3 the hand:
+03:58:37.897 -> 6 of Clubs
+03:58:37.897 -> 8 of Spades
+03:58:37.897 -> Jack of Diamonds
+03:58:37.897 -> Queen of Hearts
+03:58:37.897 -> 5 of Clubs
+03:58:37.897 -> Jack of Hearts
+03:58:37.897 -> Jack of Clubs
+03:58:37.897 -> 
+03:58:37.897 -> I found 1 pairs in hand 4 
+03:58:37.897 -> I found 0 three-of-a-kinds in hand 4 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 4 
+03:58:37.897 -> Hand 4 the hand:
+03:58:37.897 -> Ace of Hearts
+03:58:37.897 -> 9 of Clubs
+03:58:37.897 -> 2 of Clubs
+03:58:37.897 -> 5 of Diamonds
+03:58:37.897 -> 4 of Clubs
+03:58:37.897 -> 7 of Hearts
+03:58:37.897 -> 2 of Spades
+03:58:37.897 -> 
+03:58:37.897 -> I found 1 pairs in hand 5 
+03:58:37.897 -> I found 0 three-of-a-kinds in hand 5 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 5 
+03:58:37.897 -> Hand 5 the hand:
+03:58:37.897 -> 2 of Hearts
+03:58:37.897 -> 6 of Diamonds
+03:58:37.897 -> 6 of Spades
+03:58:37.897 -> King of Clubs
+03:58:37.897 -> 3 of Hearts
+03:58:37.897 -> 8 of Hearts
+03:58:37.897 -> 4 of Hearts
+03:58:37.897 -> 
+03:58:37.897 -> I found 1 pairs in hand 6 
+03:58:37.897 -> I found 0 three-of-a-kinds in hand 6 
+03:58:37.897 -> I found 0 four-of-a-kinds in hand 6 
+03:58:37.897 -> Hand 6 the hand:
+03:58:37.897 -> Jack of Spades
+03:58:37.897 -> 7 of Clubs
+03:58:37.897 -> 10 of Diamonds
+03:58:37.897 -> 3 of Clubs
+03:58:37.897 -> Queen of Spades
+03:58:37.897 -> King of Spades
+03:58:37.897 -> 10 of Spades
+03:58:37.897 -> 
