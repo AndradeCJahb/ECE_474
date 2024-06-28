@@ -492,7 +492,7 @@ int four_kind (int M, unsigned char hand[]) {
   return 0;
 }
 
-//  Predefined helper function to return a random integer between 1 and n
+//  Description: Given, predefined helper function to return a random integer between 1 and n.
 int randN (int n) { 
     double x;
     x = 1.0 + (double) n * rand() / RAND_MAX;
