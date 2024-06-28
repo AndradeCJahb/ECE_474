@@ -7,7 +7,7 @@
 #include "c_prog1.h"
 
 //  Random number seed.
-int seed = 100;
+int seed = 101;
 
 // Variables defined in c_prog1
 extern int i, j, k, l;
