@@ -43,7 +43,6 @@ int card, suit;
 int t1, t2;
 
 // Part 1.4
-// HINT: Does this need to be modified?
 char* st_buffer;
 
 // Part 2.0
