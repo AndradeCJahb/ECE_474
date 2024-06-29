@@ -14,7 +14,6 @@ void setup() {
   *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << GPIO_PIN);            // set pin 5 (D2) to be an output by moving a '1' into bit 5 of enable register
 }
 
-
 void loop() {
   *((volatile uint32_t*) GPIO_OUT_REG) |= (1 << GPIO_PIN);              // set pin 5 (D2) to output HIGH by moving '1' into bit 5 of out register
   delay(1000);
