@@ -1,3 +1,4 @@
 {
-    "C_Cpp.default.compilerPath": "cl.exe"
+    "C_Cpp.default.compilerPath": "cl.exe",
+    "C_Cpp.errorSquiggles": "enabled"
 }
