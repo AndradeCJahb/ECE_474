@@ -1,4 +1,4 @@
-// Filename:    Lab2Part1Step2.ino
+// Filename:    Lab2Part1Step3DRA.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        06/25/24
 // Description: This file outputs the length of time (in microseconds) it takes to switch an GPIO output from HIGH to LO

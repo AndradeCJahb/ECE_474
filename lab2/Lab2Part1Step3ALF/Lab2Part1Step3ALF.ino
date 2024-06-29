@@ -1,7 +1,7 @@
-// Filename:    Lab2Part1Step2.ino
+// Filename:    Lab2Part1Step3ALF.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        06/25/24
-// Description: 
+// Description: This file measures the amount of time it takes for 
 
 #include "driver/gpio.h"
 #include "soc/io_mux_reg.h"
