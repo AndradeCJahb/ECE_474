@@ -20,13 +20,13 @@ void setup() {
 
  *((volatile uint32_t*) GPIO_OUT_REG) &= ~(1 << LED_PIN);               // Ensure the LED is off to start
 
- *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) &= 0x00000000;
- *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= 1110000000000000011 << 13;
+ *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= (1110000000001010000 << 13);
+ //                                              11100000000000010110000000000000
+ //                                              11101101001010100010000000000000
 }
 void loop() {
   *((volatile uint32_t*) TIMG_T0UPDATE_REG(0)) = 1;
   unsigned long currentTime = *((volatile uint32_t*) TIMG_T0LO_REG(0)); // Get the current timer count
- 
   // Check if the interval has passed
   if (currentTime - lastToggleTime >= interval) {
     *((volatile uint32_t*) GPIO_OUT_REG) ^= (1 << LED_PIN);             // Toggle the LED state
