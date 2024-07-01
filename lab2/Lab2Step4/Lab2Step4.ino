@@ -14,18 +14,24 @@ unsigned long lastToggleTime = 0;       // Last time the LED was toggled
 const unsigned long interval = 1000000; // 1 second in microseconds
 
 void setup() {
- // Initialize the LED pin as an output
- PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[LED_PIN], PIN_FUNC_GPIO);
- *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << LED_PIN);
+  // Initialize the LED pin (D2) as an output
+  PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[LED_PIN], PIN_FUNC_GPIO);
+  *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << LED_PIN);             // set pin 5 (D2) to output
+  *((volatile uint32_t*) GPIO_OUT_REG) &= ~(1 << LED_PIN);               // Ensure the LED (D2) is off to start
 
- *((volatile uint32_t*) GPIO_OUT_REG) &= ~(1 << LED_PIN);               // Ensure the LED is off to start
-
- *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= (1110000000001010000 << 13);
- //                                              11100000000000010110000000000000
- //                                              11101101001010100010000000000000
+  // Configure timer with divider of 80
+  *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) &= (00000000000000000001111111111111);
+  *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= (1110000000001010000 << 13);
+                                                // 11001101001010100000000000000000
+                                                // 11101101001010100010000000000000 13
+                                                // 11101111101111110010000000000000 12
+                                                // 11111111111111111010000000000000 11
+                                                // 11001101001010100000000000000000
+  while (!Serial) ;
+  Serial.println(*((volatile uint32_t*) TIMG_T0CONFIG_REG(0)));
 }
-void loop() {
-  *((volatile uint32_t*) TIMG_T0UPDATE_REG(0)) = 1;
+void loop() { 
+  *((volatile uint32_t*) TIMG_T0UPDATE_REG(0)) += 1;                    // Write to T0Update register to update T0LO register
   unsigned long currentTime = *((volatile uint32_t*) TIMG_T0LO_REG(0)); // Get the current timer count
   // Check if the interval has passed
   if (currentTime - lastToggleTime >= interval) {
