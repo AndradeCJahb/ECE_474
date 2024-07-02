@@ -20,12 +20,12 @@ void setup() {
   *((volatile uint32_t*) GPIO_OUT_REG) &= ~(1 << LED_PIN);               // Ensure the LED (D2) is off to start
 
   // Configure timer with divider of 80
-  *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) &= (00000000000000000001111111111111);
-  *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= (1110000000001010000 << 13);
-                                                // 11001101001010100000000000000000
-                                                // 11101101001010100010000000000000 13
-                                                // 11101111101111110010000000000000 12
-                                                // 11111111111111111010000000000000 11
+  uint32_t config_value = 0;
+  config_value |= 1 << 31;
+  config_value |= 1 << 30;
+  config_value |= 80 << 13;
+  *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) &= 00000000000000000001111111111111;
+  *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= config_value;
                                                 // 11001101001010100000000000000000
   while (!Serial) ;
   Serial.println(*((volatile uint32_t*) TIMG_T0CONFIG_REG(0)));
