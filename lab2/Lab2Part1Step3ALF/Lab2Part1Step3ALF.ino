@@ -17,7 +17,7 @@ void setup() {
 
 void loop() {
   long startTime = micros();                                      // obtain start time for this loop of 1000 digital writes
-  // digitalWrite high and low for 1000 cycles
+  // Toggle D2 output 1000 times
   for (int i = 0; i < 1000; i++) {
     digitalWrite(GPIO_PIN, HIGH);                                 // set pin 5 (D2) to output HIGH by using digitalWrite
     digitalWrite(GPIO_PIN, LOW);                                  // set pin 5 (D2) to output LOW by using digitalWrite

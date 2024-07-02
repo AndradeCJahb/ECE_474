@@ -19,17 +19,17 @@ void setup() {
   *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << LED_PIN);             // set pin 5 (D2) to output
   *((volatile uint32_t*) GPIO_OUT_REG) &= ~(1 << LED_PIN);               // Ensure the LED (D2) is off to start
 
-  // Configure timer with divider of 80
+  // Configure timer to be enabled, have an incrementing counter, and have a divider of 80
   uint32_t config_value = 0;
-  config_value |= 1 << 31;
-  config_value |= 1 << 30;
-  config_value |= 80 << 13;
+  config_value |= 1 << 31;              // set enable flag
+  config_value |= 1 << 30;              // set increase flag
+  config_value |= 80 << 13;             // set divider to 80
+
+  // Clear upper 19 bits, then replace the bits with the previously built config_value
   *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) &= 00000000000000000001111111111111;
   *((volatile uint32_t*) TIMG_T0CONFIG_REG(0)) |= config_value;
-                                                // 11001101001010100000000000000000
-  while (!Serial) ;
-  Serial.println(*((volatile uint32_t*) TIMG_T0CONFIG_REG(0)));
 }
+
 void loop() { 
   *((volatile uint32_t*) TIMG_T0UPDATE_REG(0)) += 1;                    // Write to T0Update register to update T0LO register
   unsigned long currentTime = *((volatile uint32_t*) TIMG_T0LO_REG(0)); // Get the current timer count

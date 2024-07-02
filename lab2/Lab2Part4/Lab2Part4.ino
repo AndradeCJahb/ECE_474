@@ -16,9 +16,11 @@ void loop() {
   if (analogRead(A0) < 1000) {  // Play notes if reading of the photoresistor is <1000 (Usually when photoresistor is completely covered)
     ledcWrite(0, 300);          // Note with passive buzzer duty of 300
     delay(1000);
-    ledcWrite(0, 600);          // Note with passive buzzer duty of 600
+    ledcWrite(0, 1000);          // Note with passive buzzer duty of 600
     delay(1000);
-    ledcWrite(0, 1200);         // Note with passive buzzer duty of 1200
+    ledcWrite(0, 2000);         // Note with passive buzzer duty of 1200
+    delay(1000);
+    ledcWrite(0, 4000);         // Note with passive buzzer duty of 1200
     delay(1000);
   } else {
     ledcWrite(0, 0);            // Note with passive buzzer duty of 0 (off)
