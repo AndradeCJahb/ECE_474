@@ -1,4 +1,4 @@
-// Filename:    Lab2Step2.ino
+// Filename:    Lab2Part1Step2.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        06/25/24
 // Description: This file flashes an off-board LED at one second intervals
