@@ -1,4 +1,4 @@
-// Filename:    Lab2Step3ALF.ino
+// Filename:    Lab2Part1Step3ALF.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        06/25/24
 // Description: This file measures and outputs the amount of time (in microseconds) it takes to switch an GPIO output from HIGH to LOW using Arduino Library Functions (digitalWrite)

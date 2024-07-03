@@ -1,4 +1,4 @@
-// Filename:    Lab2Step4.ino
+// Filename:    Lab2Part2.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        06/25/24
 // Description: This file toggles an off-board LED on and off at 1 second intervals directly accessing TIMG and GPIO registers

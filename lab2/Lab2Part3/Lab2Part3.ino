@@ -1,4 +1,4 @@
-// Filename:    Lab2Step5.ino
+// Filename:    Lab2Part3.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        06/28/24
 // Description: This file changes the brightness level of an external LED based on the ambient light values from a photoresistor
