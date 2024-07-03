@@ -1,4 +1,4 @@
-// Filename:    Lab2Step5.ino
+// Filename:    Lab2Step4.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        07/02/24
 // Description: This file plays notes from an off-board passive buzzer based on the ambient light values from a photoresistor.
