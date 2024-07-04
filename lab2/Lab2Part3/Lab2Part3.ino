@@ -13,5 +13,5 @@ void setup() {
 }
 
 void loop() {
-  ledcWrite(0, analogRead(A0));   // Sets duty rate of channel 0 (external LED) to the output from A0's analog read (0-4095)
+  ledcWrite(0, (analogRead(A0) - 2048) * 2);   // Sets duty rate of channel 0 (external LED) to the output from A0's analog read (0-4095)
 }
