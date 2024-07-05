@@ -1,7 +1,7 @@
 // Filename:    c_prog01.c
 // Author:      Christopher Andrade
-// Date:        6/24/24
-// Description: This .c file contains multiple exercises to gain experience and proficiency with C programming.
+// Date:        7/12/24
+// Description: This .c file contains solutions to multiple exercises to gain experience and proficiency with C programming.
 
 /*c_prog01.c
  *
@@ -152,7 +152,7 @@ void sums_and_squares2 (int N) {
 // Description: Takes a string (st) and integer n to pad and return a pointer to a string (st_buffer) with length n, achieved by
 //              padding or truncation of the original string (st).
 char* length_pad (char *st, char* st_buffer, int n) {
-  st_buffer = (char *)malloc(n * sizeof(char));   // malloc enough to fit newly padded string
+  st_buffer = (char *)malloc((n+1) * sizeof(char));   // malloc enough to fit newly padded string + null terminator
   int len = strlen(st);
 
   if (len > n) {                      // word requires truncation case
@@ -218,14 +218,14 @@ void sums_and_squares3 (int N) {
  [ 1   2 ]  [ 10   4 ]  [ 6   2 ]
  *****************************************************************************/
 
-// Description: Takes a shuffle (array of N_DECK (52) pairs of integers) which is filled with 52 unique pairs of integers
+// Description: Takes a shuffle (array of N_DECK (52) pairs of integers) which is then filled with 52 unique pairs of integers
 //              which correspond to valid playing cards with card numbers ranging from 1-13 (Ace to King) and card suits
 //              ranging from 1-4 ("Hearts","Diamonds","Clubs","Spades").
 void fill (shuffle deck[N_DECK][2]) {
   int cards[N_DECK][2];                       // initialize an "internal" array of cards
   int index = 0;                              // index utilized for populating deck with valid cards
 
-  // nested for-loop to populate deck with one of each possible and valid card
+  // nested for-loop to populate "internal" deck with one of each possible and valid card
   for (int card = 1; card <= 13; card++) {
     for (int suit = 1; suit <= 4; suit++) {
       cards[index][0] = card;
@@ -234,12 +234,12 @@ void fill (shuffle deck[N_DECK][2]) {
     }
   }
   
-  // for loop to swap each card with a random card up to final card
+  // swap each card with a random card up to final card
   for (int i = 0; i < 52; i++) {
-    // obtaining random index within deck array
-    int j = randN(52) -1;                     
+    // obtaining random index within cards array
+    int j = randN(51);                     
 
-    // temp variables to allow for swapping two cards within deck
+    // temp variables to allow for swapping two cards within cards
     int tempCard = cards[i][0];               
     int tempSuit = cards[i][1];
 
@@ -279,7 +279,7 @@ void fill (shuffle deck[N_DECK][2]) {
  *****************************************************************************/
 
 // Description: Takes two integers, one corresponding to a card number and the other to a card suit, their respective 
-//              bit values are concatenated into an 1 byte unsigned char which is returned. In the case that the card 
+//              bit values are concatenated into an unsigned char which is returned. In the case that the card 
 //              number and suit are invalid integers i.e. outside of ranges 1-13, 1-4 respectively, CARD_ERROR is returned.
 unsigned char convert (int card, int suit) {
   // shift card bits up 4 to allow room for suit bits, OR to combine fields into single unsigned char of 8 bits (1 byte)
@@ -438,6 +438,7 @@ int pairs (int M, unsigned char hand[]) {
     
     for (int j = 0; j < M; j++) {
       if (seen[j] == curr) {
+        // if contained, contained is true (1) and clear the card number from the seen array
         contained = 1;
         seen[j] = 0;
       }
@@ -468,7 +469,7 @@ int trip_s (int M, unsigned char hand[]) {
             gcard(hand[i]) != seenTrips[0]   && 
             gcard(hand[i]) != seenTrips[1] ) {   // Check if card numbers of current 3 cards match (and not previously seen)
           seenTrips[tripsCount];
-          tripsCount++;                               // increment tripsCount 
+          tripsCount++;                          // increment tripsCount 
         }
       }
     }
