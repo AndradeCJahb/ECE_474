@@ -6,6 +6,7 @@
 
 #include "c_prog1.h"
 
+
 //  Random number seed.
 int seed = 101;
 
@@ -32,6 +33,8 @@ void setup() {
   delay(2000);
   // put your setup code here, to run once:
   Serial.begin(9600);
+
+
   randomSeed(seed);
 
   print_str("Random seed: "); print_int(seed); print_newl();

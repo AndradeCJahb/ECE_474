@@ -480,7 +480,7 @@ int trip_s (int M, unsigned char hand[]) {
 
 // Description: takes hand and its size (M) to determine if any four-of-a-kinds (of card numbers) exist in the hand.
 int four_kind (int M, unsigned char hand[]) {
-  // quadruple-nested for loops to search every possible combination of 4 cards for a four-of-a-kind.
+  // quadruple-nested for loops to search ePvery possible combination of 4 cards for a four-of-a-kind.
   for (int i = 0; i < M-3; i++) {
     for (int j = i+1; j < M-2; j++) {
       for (int k = j+1; k < M-1; k++) {

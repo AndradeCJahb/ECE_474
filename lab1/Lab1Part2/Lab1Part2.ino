@@ -9,6 +9,7 @@ void setup() {
 }
 
 void loop() {
+  Serial.write("hallo");
   digitalWrite(13, HIGH); // Turn on Built-in LED
   delay(1000);
   digitalWrite(13, LOW);  // Turn off Built-in LED
