@@ -5,23 +5,23 @@
 
 #include "driver/gpio.h"
 #include "soc/io_mux_reg.h"
-#include "soc/gpio_reg.h"
+#include "soc/gpio_reg.h"`
 
 #define GPIO_PIN 5 // Pin D2
 
 void setup() {
-  PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[GPIO_PIN], PIN_FUNC_GPIO);     // set pin 5 (D2) to be a general purpose input/output
-  *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << GPIO_PIN);     // set pin 5 (D2) to be an output by moving a '1' into bit 5 of enable register
+  PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[GPIO_PIN], PIN_FUNC_GPIO); // set pin 5 (D2) to be a general purpose GPIO input/output
+  *((volatile uint32_t*) GPIO_ENABLE_REG) |= (1 << GPIO_PIN); // set pin 5 (D2) to be an output by shifting a '1' into bit 5 of enable register
 }
 
-
 void loop() {
-  long startTime = micros();                                      // obtain start time for this loop of 1000 digital writes
+  long startTime = micros();                                  // obtain start time for this loop of 1000 digital writes
+
   // Toggle D2 output 1000 times
   for (int i = 0; i < 1000; i++) {
-    digitalWrite(GPIO_PIN, HIGH);                                 // set pin 5 (D2) to output HIGH by using digitalWrite
-    digitalWrite(GPIO_PIN, LOW);                                  // set pin 5 (D2) to output LOW by using digitalWrite
+    digitalWrite(GPIO_PIN, HIGH);                             // set pin 5 (D2) to output HIGH by using digitalWrite
+    digitalWrite(GPIO_PIN, LOW);                              // set pin 5 (D2) to output LOW by using digitalWrite
   }
-  Serial.println(Serial.print(micros() - startTime));             // calculate amount of time it took to digital write high/low 1000 times
+  Serial.println(Serial.print(micros() - startTime));         // calculate and output amount of time it took to digital write high/low 1000 times
   delay(1000);
 }
