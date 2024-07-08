@@ -458,7 +458,7 @@ int pairs (int M, unsigned char hand[]) {
 // Description: takes hand and its size (M) to determine if any three-of-a-kinds (of card numbers) exist in the hand.
 int trip_s (int M, unsigned char hand[]) {
   int tripsCount = 0;
-  unsigned char seenTrips[2] = {0,0};         // Array to store seen three-of-a-kinds to ensure correct returned count.
+  unsigned char seenTrip = 0;         // Array to store seen three-of-a-kinds to ensure correct returned count.
 
   // triple-nested for loops to search every possible combination of 3 cards for a three-of-a-kind.
   for (int i = 0; i < M-2; i++) {
@@ -466,10 +466,9 @@ int trip_s (int M, unsigned char hand[]) {
       for (int k = j+1; k < M; k++) {
         if (gcard(hand[i]) == gcard(hand[j]) &&
             gcard(hand[j]) == gcard(hand[k]) && 
-            gcard(hand[i]) != seenTrips[0]   && 
-            gcard(hand[i]) != seenTrips[1] ) {   // Check if card numbers of current 3 cards match (and not previously seen)
-          seenTrips[tripsCount];
-          tripsCount++;                          // increment tripsCount 
+            gcard(hand[i]) != seenTrip ) {        // Check if card numbers of current 3 cards match (and not previously seen)
+          seenTrip = hand[i];                     // Mark current found Triple
+          tripsCount++;                           // increment tripsCount 
         }
       }
     }
