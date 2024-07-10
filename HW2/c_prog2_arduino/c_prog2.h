@@ -18,6 +18,7 @@
  */
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 /*************************************************************************
    Part 2.1:  Bitwise operations
@@ -34,7 +35,7 @@ char * pmatch(char);
 /*************************************************************************
    Part 2.3:  Pointer Arithmetic
 *************************************************************************/
-char nlet(char*);
+signed char nlet(char*);
 
 int ldif(char, char);
 
@@ -60,7 +61,7 @@ void float_to_ints(float, int*);
 // Modify this definition 
 // NOTE: This is used to store the output string of per_print.
 // How long does this need to be?
-char* personbuf;
+char* personbuf[sizeof(Person)];
 
 char* per_print(Person*, char*);
 

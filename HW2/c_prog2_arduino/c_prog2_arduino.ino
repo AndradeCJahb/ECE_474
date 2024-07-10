@@ -19,6 +19,7 @@ char buf[80];
 void setup() {
     long sid;   // student ID #
     Serial.begin(115200);
+    delay(2000);
 
     // Part 1.1
     Serial.println( "Part 1.1: Enter your UW Student ID number...");

@@ -25,6 +25,7 @@ Format of assignment:
 */
 #include "c_prog2.h"
 
+
 /*******************************************************************************
    Part 1:  Bitwise operations
 *******************************************************************************/
@@ -58,10 +59,10 @@ Format of assignment:
  */
 
 long mangle(long SID){
-    SID <<= 2;
+    SID >>= 2;
     SID &= ~(1 << 6);
     SID ^= (1 << 3);
-    return 0;
+    return SID;
 }
 
 /* Part 1.2  More bit manipulation. The function bit_check(int data, int bits_on,
@@ -98,11 +99,8 @@ long mangle(long SID){
  *  bit_check(d, offmask1, offmask1) --> -1 // contradictory
  */
 
-int  bit_check(int data, int bits_on, int bits_off){
-    int contradict = 0;
-    contradict |= bits_on;
-    contradict ^= bits_off;
-    if (contradict & bits_on) {
+int bit_check(int data, int bits_on, int bits_off){
+    if (bits_off & bits_on) {
         return -1;
     }
 
@@ -147,8 +145,8 @@ char* pmatch(char c){
  * capital letter A-Y, return -1.
  */
 
-char nlet(char *ptr){
-    if (*ptr == Z || *ptr == NULL) {
+signed char nlet(char *ptr){
+    if (*ptr == 'Z' || ptr == NULL) {
         return -1;
     }
 
@@ -238,13 +236,21 @@ int personSize(Person p){
  *  -----------------------
  */
 void float_to_ints(float f, int* output){
-    *output = (int) f;
-    *(output + sizeof(int)) = f % 1;
+    output[0] = (int) f;
+    output[1] = (int) ((f - output[0]) * 100);
     return;
 }
 
 char* per_print(Person *p, char* personbuf){
-    
-    
+    int heightArr[2] = {0,0};
+    int *heightPtr = heightArr;
+
+    int weightArr[2] = {0,0};
+    int *weightPtr = weightArr;
+
+    float_to_ints((float)p->Height, *heightPtr);
+    float_to_ints((float)p->Weight, *weightPtr);
+
+    sprintf(personbuf, "--- person report: ----\nFirst Name:       %s\nLast Name:        %s\nAddress:          %s\nZip:              %d\n Height:           %d,%d\nWeight:           %d,%d\nDOB 1/1/1900:     %d\n-----------------------", p->FirstName, p->LastName, p->StreetAddr, p->ZipCode, heightArr[0], heightArr[1], weightArr[0], weightArr[1], p->DBirth);
     return personbuf;
 }
