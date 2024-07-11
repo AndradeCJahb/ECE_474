@@ -1,4 +1,4 @@
-// Filename:    ICTE6_Lab1.ino
+// Filename:    ICTE6_CANDRADE.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        07/10/2024
 // Description: This file utilizes an off-board tactile switch and interrupts to control the status of an off-board LED
