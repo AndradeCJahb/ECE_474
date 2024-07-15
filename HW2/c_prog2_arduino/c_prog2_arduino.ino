@@ -70,12 +70,7 @@ void setup() {
         bit_check(32768+4096+64, 4096+64, 16384)); // 1
     Serial.print(buf); 
     
-    sprintf(buf, "bit_check(32768+4096+64, 4096+64, 32768): %d\n", 
-        bit_check(32768+4096+64, 4096+64, 32768)); // 0
-    Serial.println(buf);
-
-    // Part 2.1
-    char ctest;
+    sprintf(buf, "bit_check(3276    char ctest;
     Serial.println("Part 2.1: Enter a capital letter...");
     while(Serial.available() == 0){
     }
@@ -84,7 +79,12 @@ void setup() {
     String input = Serial.readString();
     ctest = input[0];
     
-    char * ptest = pmatch(ctest);
+    char * ptest = pmatch(ctest);8+4096+64, 4096+64, 32768): %d\n", 
+        bit_check(32768+4096+64, 4096+64, 32768)); // 0
+    Serial.println(buf);
+
+    // Part 2.1
+
     if (ptest != NULL){
         sprintf(buf, " You entered: %1c\n", *ptest);
         Serial.print(buf);

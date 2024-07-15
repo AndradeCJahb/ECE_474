@@ -241,16 +241,20 @@ void float_to_ints(float f, int* output){
     return;
 }
 
-char* per_print(Person *p, char* personbuf){
-    int heightArr[2] = {0,0};
-    int *heightPtr = heightArr;
+char* per_print(Person *p, char* personbuf) {
+    int heightArr[2] = {0, 0};
+    int weightArr[2] = {0, 0};
 
-    int weightArr[2] = {0,0};
-    int *weightPtr = weightArr;
+    float_to_ints(p->Height, heightArr);
+    float_to_ints(p->Weight, weightArr);
+    
+    char newAddr[61];
+    strncpy(newAddr, p->StreetAddr, 60);
+    newAddr[60] = '\0';
 
-    float_to_ints((float)p->Height, *heightPtr);
-    float_to_ints((float)p->Weight, *weightPtr);
-
-    sprintf(personbuf, "--- person report: ----\nFirst Name:       %s\nLast Name:        %s\nAddress:          %s\nZip:              %d\n Height:           %d,%d\nWeight:           %d,%d\nDOB 1/1/1900:     %d\n-----------------------", p->FirstName, p->LastName, p->StreetAddr, p->ZipCode, heightArr[0], heightArr[1], weightArr[0], weightArr[1], p->DBirth);
+    sprintf(personbuf, 
+            "--- person report: ----\nFirst Name:       %s\nLast Name:        %s\nAddress:          %s\nZip:              %s\nHeight (m):           %d.%d\nWeight (kg):           %d.%d\nDOB 1/1/1900:     %ld\n", 
+            p->FirstName, p->LastName, newAddr, p->ZipCode, heightArr[0], heightArr[1], weightArr[0], weightArr[1], p->DBirth);
+    strcat(personbuf, "-----------------------\n");
     return personbuf;
 }

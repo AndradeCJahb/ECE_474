@@ -61,7 +61,7 @@ void float_to_ints(float, int*);
 // Modify this definition 
 // NOTE: This is used to store the output string of per_print.
 // How long does this need to be?
-char* personbuf[sizeof(Person)];
+char personbuf[sizeof(Person)];
 
 char* per_print(Person*, char*);
 
