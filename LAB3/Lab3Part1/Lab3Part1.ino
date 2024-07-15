@@ -28,6 +28,11 @@ void loop() {
   // Place entered string into buffer array and determine length of entered string
   int inputLength = Serial.readBytesUntil('\r', buffer, 16) -1;
 
+  // Clear remaining bytes in Serial Monitor
+  while(Serial.available() > 0) {
+    int t = Serial.read();
+  }
+  
   // Create arrays with instructions for clearing the LCD and setting the cursor to the first line
   uint8_t clear[]  = { 0x0C, 0x08, 0x1C, 0x18 };
   uint8_t cursor[] = { 0x8C, 0x88, 0x0C, 0x08 };
@@ -56,5 +61,5 @@ void loop() {
   Wire.beginTransmission(0x27);
   Wire.write(commBytes, inputLength*4);
   Wire.endTransmission();
-  delay(2000); 
+  delay(2); 
 }
