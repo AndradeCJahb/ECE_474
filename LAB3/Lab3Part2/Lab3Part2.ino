@@ -133,9 +133,33 @@ void counter() {
   countBytes[42] = 0x0D | (uint8_t)(48 << 4);
   countBytes[43] = 0x09 | (uint8_t)(48 << 4);
 
-  // Transmission of byte array containing displaying of 1-10 on LCD
+  uint8_t* countBytesPtr;
+  int count = 0;
+  long startTime = millis();
+
+  while(count < 10) {
+    if(millis()-startTime >= 500) {
+      countBytesPtr = &countBytes[count*4];
+
+      Wire.beginTransmission(0x27);
+      Wire.write(cursor, 4);
+      Wire.endTransmission();
+      delay(2);
+      
+
+      Wire.beginTransmission(0x27);
+      Wire.write(countBytesPtr, 4);
+      Wire.endTransmission();
+      delay(2);
+      startTime = millis();
+      count++;
+    }
+  }
+
+  countBytesPtr = &countBytes[40];
+
   Wire.beginTransmission(0x27);
-  Wire.write(countBytes, 44);
+  Wire.write(countBytesPtr, 4);
   Wire.endTransmission();
   delay(2);
 
