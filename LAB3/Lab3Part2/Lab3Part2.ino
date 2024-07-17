@@ -6,6 +6,11 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
+void blinkLED();
+void counter();
+void playBuzzer();
+void printAlpha();
+
 struct TCB {
  void (*taskFunction)();    // Pointer to the task function
  bool isRunning;            // State of the task
@@ -15,6 +20,13 @@ struct TCB {
 };
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Initialize the LCD
+//struct TCB LED, Count10, Buzz, Alpha;
+struct TCB LED      = {blinkLED   , false, false, 1, 4};
+struct TCB Count10  = {counter    , false, false, 2, 3};
+struct TCB Buzz     = {playBuzzer , false, false, 3, 2};
+struct TCB Alpha    = {printAlpha , false, false, 4, 1};
+
+struct TCB tasks[4] = {LED, Count10, Buzz, Alpha};
 
 void setup() {
   Serial.begin(115200);
@@ -33,39 +45,40 @@ void setup() {
   ledcAttachPin(D3, 0);
   ledcWrite(0, 0);
 
-  //struct TCB LED, Count10, Buzz, Alpha;
-  struct TCB LED      = {blinkLED   , false, false, 1, 1};
-  struct TCB Count10  = {counter    , false, false, 2, 2};
-  struct TCB Buzz     = {playBuzzer , false, false, 3, 3};
-  struct TCB Alpha    = {printAlpha , false, false, 4, 4};
-
-  struct TCB tasks[4] = {LED, Count10, Buzz, Alpha};
-
-  delay(20);
+  delay(200);
 }
 
 void loop() {
   // Check if all tasks done
   if(tasks[0].isDone && tasks[1].isDone && tasks[2].isDone && tasks[3].isDone) {
+    Serial.println("reset");
     for(int i = 0; i < 4; i++) {
       tasks[i].isDone = false;
+      tasks[i].isRunning = false;
       tasks[i].priority = tasks[i].priority % 4 + 1;
     }
   }
 
-  for(int = 0; i < 4; i++) {
-    
+  int nextTaskIndex = -1;
+  int nextTaskPriority = -1;
+  for(int i = 0; i < 4; i++) {
+    if(!tasks[i].isDone && !tasks[i].isRunning && tasks[i].priority > nextTaskPriority) {
+      nextTaskIndex = i;
+      nextTaskPriority = tasks[i].priority;
+    }
   }
 
-
-
-
-  delay(4000);
+  if (nextTaskIndex != -1) {
+    tasks[nextTaskIndex].isRunning = true;
+    tasks[nextTaskIndex].taskFunction();
+    tasks[nextTaskIndex].isDone = true;
+    tasks[nextTaskIndex].isRunning = false;
+    Serial.println(tasks[nextTaskIndex].priority);
+  }
+  
 }
 
 void blinkLED() {
-  LED.isRunning = true;
-
   int count = 0;
   long startTime = millis();
 
@@ -77,15 +90,10 @@ void blinkLED() {
     }
   }
 
-  LED.isRunning = false;
-  LED.isDone    = true;
   Serial.print("LED Blinker: ");
-  Serial.println(LED.priority);
 }
 
 void counter() {
-  Count10.isRunning = true;
-
   // Create arrays with instructions for clearing the LCD and setting the cursor to the first line
   uint8_t clear[]  = { 0x0C, 0x08, 0x1C, 0x18 };
   uint8_t cursor[] = { 0x8C, 0x88, 0x0C, 0x08 };
@@ -131,10 +139,7 @@ void counter() {
   Wire.endTransmission();
   delay(2);
 
-  Count10.isRunning = false;
-  Count10.isDone    = true;
   Serial.print("Counter: ");
-  Serial.println(Count10.priority);
 }
 
 void playBuzzer() {
@@ -151,25 +156,20 @@ void playBuzzer() {
     }
   }
 
-  Buzz.isRunning = false;
-  Buzz.isDone    = true;
+  ledcWrite(0, 0);
   Serial.print("Music Player: ");
-  Serial.println(Buzz.priority);
 }
 
 void printAlpha() {
   Alpha.isRunning = true;
 
-  Serial.print("\n");
   for(int i = 0; i < 26; i++) {
     Serial.print((char)(i+65));
     if(i != 25) {
       Serial.print(',');
     }
   }
+  Serial.println();
 
-  Alpha.isRunning = false;
-  Alpha.isDone    = true;
   Serial.print("Alphabet Printer: ");
-  Serial.println(Alpha.priority);
 }
