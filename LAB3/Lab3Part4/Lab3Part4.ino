@@ -1,7 +1,8 @@
 // Filename:    Lab3Part2.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        07/15/24
-// Description: 
+// Description: This file contains a First Come First Serve (FCFS) scheduling algorithm which utilizes TCB 
+//              to manage three tasks and make use of a button that triggers an interrupt to cycle through the tasks.
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -15,7 +16,7 @@ void IRAM_ATTR buttonInterrupt();
 
 // global variables of current task, and if an interuppt has been detected
 int nextTaskIndex = -1;
-bool interrupt;
+bool interrupt = false;
 
 struct TCB {
  void (*taskFunction)();    // Pointer to the task function
@@ -32,7 +33,7 @@ struct TCB LED      = {blinkLED   , false, false, 1, 4};
 struct TCB Count10  = {counter    , false, false, 2, 3};
 struct TCB Buzz     = {playBuzzer , false, false, 3, 2};
 
-// Insertion of TCB structs into TCB array
+// Insertion of TCB structs into larger TCB array
 struct TCB tasks[3] = {Buzz, Count10, LED};
 
 void setup() {
@@ -56,6 +57,7 @@ void setup() {
   delay(200);
 }
 
+// Description: Interrupt which sets global var "interrupt" to true
 void IRAM_ATTR buttonInterrupt() {
   interrupt = true;
 }
@@ -110,6 +112,7 @@ void blinkLED() {
     }
   }
 
+  // Print task name
   Serial.println("LED Blinker");
 }
 
@@ -170,29 +173,34 @@ void counter() {
     if(millis()-startTime >= 1000) {
       countBytesPtr = &countBytes[count*4];   // pointer depends on current count
 
+      // Transmit array of instructions corresponding to setting the cursor to the first line
       Wire.beginTransmission(0x27);
       Wire.write(cursor, 4);
       Wire.endTransmission();
       delay(2);
-      
+
+      // Transmit array of instructions corresponding to next number to be displayed on LCD
       Wire.beginTransmission(0x27);
       Wire.write(countBytesPtr, 4);
       Wire.endTransmission();
       delay(2);
 
+      // Increment count and update start time
       startTime = millis();
       count++;
     }
   }
 
-  // Transmit '0' in 10 at end of count.
+  // Set pointer to index of 40, only bytes corresponding to transmitting 10 (1 and 0) remain.
   countBytesPtr = &countBytes[40];
 
+  // Transmit 10 (1 and 0) to the LCD
   Wire.beginTransmission(0x27);
   Wire.write(countBytesPtr, 4);
   Wire.endTransmission();
   delay(2);
 
+  // Print task name
   Serial.println("Counter");
 }
 
@@ -225,6 +233,8 @@ void playBuzzer() {
       } else {
         duration = 300;
       }
+
+      // Play next note, set startTime and increment count/note index
       tone(D3, notes[count]);
       startTime = millis();
       count++;
@@ -232,5 +242,7 @@ void playBuzzer() {
   }
 
   noTone(D3); // turn off passive buzzer
+
+  // Print task name
   Serial.println("Music Player");
 }

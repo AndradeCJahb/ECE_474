@@ -9,15 +9,13 @@
 #include <WiFi.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);  // Initialize the LCD
-hw_timer_t* timer = NULL;
+hw_timer_t* timer = NULL;  //initialize various timer and boolean variables for the interrupt ISRs
 volatile bool msg = false;
 volatile int counter = 0;
 volatile bool update = false;
-uint8_t buffer[16];
-
+uint8_t buffer[16]; //buffer to store data to be sent to LCD
 
 int inputLength;
-
 
 // Timer interrupt service routine to increment number on the LCD
 void IRAM_ATTR timerInterrupt() {
@@ -25,25 +23,24 @@ void IRAM_ATTR timerInterrupt() {
   update = true;
 }
 
-// Timer interrupt service routine to display message when button is pressed
+// Interrupt service routine to display message on LCD when received
 void IRAM_ATTR dataReceived(const uint8_t * mac, const uint8_t *incomingData, int len) {
   msg = true;
   update = true;
-  for(int i = 0; i < len && i < 16; i++) {
+  for(int i = 0; i < len && i < 16; i++) { //copy the received bytes into the global buffer
     buffer[i] = incomingData[i];
   }
   inputLength = len;
-  Serial.println("allo");
 }
 
-
-void setup() {
-  WiFi.mode(WIFI_STA);
-  Serial.begin(115200);
-  // Initialize LCD and I2C communication
+void setup() {  
+  // Initialize LCD, WIFI, and I2C communication
   Wire.begin();
   lcd.init();
+  WiFi.mode(WIFI_STA);
   delay(2);
+
+  Serial.begin(115200);
   while(!Serial){}
 
   timer = timerBegin(0, 80, true);  // Timer 0, prescaler 80, count up
@@ -60,23 +57,23 @@ void setup() {
 }
 
 void loop() {
-  if(update) {
-    if(msg){
+  if(update) { //only update the LCD display when one of the interrupts is triggered
+
+    if(!msg) { //if there's not a new message, increment the count variable
       
-    } else {
       inputLength = 0;
-      int x = counter;
-      int i = 0;
+      int x = counter; //placeholder variable to determine the number of digits in the current display number
+      int i = 0; //variable to ensure we don't go past the limits of the LCD display character count
 
       while(x >= 1 && i < 16) { // find the input length by repeatedly dividing the value of the counter by 10
         inputLength += 1;
-        buffer[i] = (uint8_t) ((x % 10) + 48); // set the buffer to be the correct number, but backwards by taking each digit as x is divided
+        buffer[i] = (uint8_t) ((x % 10) + 48); // set the buffer to be the correct number, but backwards by taking each digit as x is divided by 10
         x = x / 10;
         i += 1;
       }
 
-      int j = 0;
-      while (j < i / 2) { //reverse the buffer to get the correct number using a temporary variable to swap opposite ends of the array
+      int j = 0; //reverse the buffer to get the correct number using a temporary variable to swap opposite ends of the array
+      while (j < i / 2) { 
         uint8_t temp = buffer[j];
         buffer[j] = buffer[i - j - 1];
         buffer[i - j - 1] = temp;
@@ -116,12 +113,12 @@ void loop() {
     Wire.endTransmission();
     delay(2);
     update = false;
+
+    //if there has been a received message this update, delay for 2 seconds to show the message before continuing to count up
     if (msg) {
       delay(2000);
       msg = false;
     }
   }
-
-  
 }
 

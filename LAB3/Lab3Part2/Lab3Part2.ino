@@ -89,17 +89,22 @@ void blinkLED() {
   int count = 0;
   long startTime = millis();
 
+  // Toggle (on/off) LED 16 times
   while(count < 16) {
     if(millis()-startTime > 1000) {
-      digitalWrite(D2, !digitalRead(D2));
+      digitalWrite(D2, !digitalRead(D2)); // Toggle LED pin 
+      
+      // increment count and reset startTime
       startTime = millis();
       count++;
     }
   }
 
+  // Print task name
   Serial.print("LED Blinker: ");
 }
 
+// Description: Counts from 1-10 at .5 second intervals on the off-board LCD
 void counter() {
   // Create arrays with instructions for clearing the LCD and setting the cursor to the first line
   uint8_t clear[]  = { 0x0C, 0x08, 0x1C, 0x18 };
@@ -140,40 +145,47 @@ void counter() {
   countBytes[42] = 0x0D | (uint8_t)(48 << 4);
   countBytes[43] = 0x09 | (uint8_t)(48 << 4);
 
-  
-  uint8_t* countBytesPtr;
+  uint8_t* countBytesPtr;     // Pointer to specific index within created countBytes array
   int count = 0;
   long startTime = millis();
 
+  // Loop 10 times to count up on LED
   while(count < 10) {
     if(millis()-startTime >= 500) {
-      countBytesPtr = &countBytes[count*4];
+      countBytesPtr = &countBytes[count*4];   // pointer depends on current count
 
+      // Transmit array of instructions corresponding to setting the cursor to the first line
       Wire.beginTransmission(0x27);
       Wire.write(cursor, 4);
       Wire.endTransmission();
       delay(2);
       
-
+      // Transmit array of instructions corresponding to next number to be displayed on LCD
       Wire.beginTransmission(0x27);
       Wire.write(countBytesPtr, 4);
       Wire.endTransmission();
       delay(2);
+
+      // Increment count and update start time
       startTime = millis();
       count++;
     }
   }
 
+  // Set pointer to index of 40, only bytes corresponding to transmitting 10 (1 and 0) remain.
   countBytesPtr = &countBytes[40];
 
+  // Transmit 10 to LCD
   Wire.beginTransmission(0x27);
   Wire.write(countBytesPtr, 4);
   Wire.endTransmission();
   delay(2);
 
+  // Print task name
   Serial.print("Counter: ");
 }
 
+// Description: Plays a 10 note melody using the passive buzzer
 void playBuzzer() {
   int count = 0;
   long startTime = millis();
@@ -189,6 +201,8 @@ void playBuzzer() {
 
   // Turn off passive Buzzer
   ledcWrite(0, 0);
+
+  // Print task name
   Serial.print("Music Player: ");
 }
 
@@ -205,5 +219,6 @@ void printAlpha() {
   }
   Serial.println();
 
+  // Print task name
   Serial.print("Alphabet Printer: ");
 }
