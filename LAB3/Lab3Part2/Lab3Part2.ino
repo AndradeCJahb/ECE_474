@@ -1,31 +1,35 @@
 // Filename:    Lab3Part2.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        07/15/24
-// Description: 
+// Description: This file contains 4 different tasks of changing priority which are then run according
+//              to their current priority by use of a TCB.
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
+// Function prototypes
 void blinkLED();
 void counter();
 void playBuzzer();
 void printAlpha();
 
+// TCB struct containing, task/function pointer, priority and variables concerning task status
 struct TCB {
  void (*taskFunction)();    // Pointer to the task function
  bool isRunning;            // State of the task
  bool isDone;               // Whether the task is completed or not
- int pid;                   // Unique process ID
  int priority;              // The priority level of the task
 };
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Initialize the LCD
-//struct TCB LED, Count10, Buzz, Alpha;
-struct TCB LED      = {blinkLED   , false, false, 1, 4};
-struct TCB Count10  = {counter    , false, false, 2, 3};
-struct TCB Buzz     = {playBuzzer , false, false, 3, 2};
-struct TCB Alpha    = {printAlpha , false, false, 4, 1};
 
+// Creation of structs corresponding to a unique task with unique priority
+struct TCB LED      = {blinkLED   , false, false, 4};
+struct TCB Count10  = {counter    , false, false, 3};
+struct TCB Buzz     = {playBuzzer , false, false, 2};
+struct TCB Alpha    = {printAlpha , false, false, 1};
+
+// Creation and placement of tasks into larger TCB array
 struct TCB tasks[4] = {LED, Count10, Buzz, Alpha};
 
 void setup() {
@@ -51,7 +55,7 @@ void setup() {
 void loop() {
   // Check if all tasks done
   if(tasks[0].isDone && tasks[1].isDone && tasks[2].isDone && tasks[3].isDone) {
-    Serial.println("reset");
+    // Reset status and change priority of all tasks/functions
     for(int i = 0; i < 4; i++) {
       tasks[i].isDone = false;
       tasks[i].isRunning = false;
@@ -59,25 +63,28 @@ void loop() {
     }
   }
 
-  int nextTaskIndex = -1;
-  int nextTaskPriority = -1;
+  // Find next task to run based on highest priority remaining
+  int nextTaskIndex = -1;     // Initialize taskindex to 1, corresponds to no task
+  int nextTaskPriority = -1;  // Priority should be overwritten immediately if a valid task is found
   for(int i = 0; i < 4; i++) {
+    // Next task determined if it is not running, done and if it has a greater priority than current highest priority
     if(!tasks[i].isDone && !tasks[i].isRunning && tasks[i].priority > nextTaskPriority) {
       nextTaskIndex = i;
       nextTaskPriority = tasks[i].priority;
     }
   }
 
+  // if a valid task to run has been found
   if (nextTaskIndex != -1) {
     tasks[nextTaskIndex].isRunning = true;
-    tasks[nextTaskIndex].taskFunction();
+    tasks[nextTaskIndex].taskFunction();            // Call function/task
     tasks[nextTaskIndex].isDone = true;
     tasks[nextTaskIndex].isRunning = false;
-    Serial.println(tasks[nextTaskIndex].priority);
+    Serial.println(tasks[nextTaskIndex].priority);  // Print priority of task after completion
   }
-  
 }
 
+// Description: Blink an off-board LED on/off at 1000ms intervals (8 times each)
 void blinkLED() {
   int count = 0;
   long startTime = millis();
@@ -133,6 +140,7 @@ void counter() {
   countBytes[42] = 0x0D | (uint8_t)(48 << 4);
   countBytes[43] = 0x09 | (uint8_t)(48 << 4);
 
+  
   uint8_t* countBytesPtr;
   int count = 0;
   long startTime = millis();
@@ -167,28 +175,30 @@ void counter() {
 }
 
 void playBuzzer() {
-  Buzz.isRunning = true;
-  
   int count = 0;
   long startTime = millis();
 
+  // Play 10 different notes of ascending duty rate every 500 ms
   while(count < 10) {
-    if(millis()-startTime > 500) {
+    if(millis()-startTime >= 500) {
       ledcWrite(0, (count+1)*400);
       startTime = millis();
       count++;
     }
   }
 
+  // Turn off passive Buzzer
   ledcWrite(0, 0);
   Serial.print("Music Player: ");
 }
 
+// Description: Prints alphabet with characters seperated by commas to Serial Monitor
 void printAlpha() {
-  Alpha.isRunning = true;
-
+  // Loop through numbers 0-25 and normalize (+65) to obtain corresponding ASCII characters
   for(int i = 0; i < 26; i++) {
     Serial.print((char)(i+65));
+
+    // Do not print "," if last Character (Z)
     if(i != 25) {
       Serial.print(',');
     }
