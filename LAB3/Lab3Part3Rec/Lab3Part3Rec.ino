@@ -1,7 +1,7 @@
 // Filename:    Lab3Part3Rec.ino
 // Author:      Christopher Andrade (2221525), Theo Favour (2169814)
 // Date:        07/15/24
-// Description: This file displays the first 16 characters typed into the Arduino Serial Monitor on an off-board LCD display.
+// Description: This file counts upwards every second on an off-board LCD, and displays received wireless messages from another ESP32 on the same LCD.
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -9,11 +9,11 @@
 #include <WiFi.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);  // Initialize the LCD
-hw_timer_t* timer = NULL;  //initialize various timer and boolean variables for the interrupt ISRs
+hw_timer_t* timer = NULL;  // Initialize various timer and boolean variables for the interrupt ISRs
 volatile bool msg = false;
 volatile int counter = 0;
 volatile bool update = false;
-uint8_t buffer[16]; //buffer to store data to be sent to LCD
+uint8_t buffer[16]; // Buffer to store data to be sent to LCD
 
 int inputLength;
 

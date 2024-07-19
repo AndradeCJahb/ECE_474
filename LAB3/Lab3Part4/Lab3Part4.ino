@@ -22,16 +22,14 @@ struct TCB {
  void (*taskFunction)();    // Pointer to the task function
  bool isRunning;            // State of the task
  bool isDone;               // Whether the task is completed or not
- int pid;                   // Unique process ID
- int priority;              // The priority level of the task
 };
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // Initialize the LCD
 
 // Creation of TCB structs for each task
-struct TCB LED      = {blinkLED   , false, false, 1, 4};
-struct TCB Count10  = {counter    , false, false, 2, 3};
-struct TCB Buzz     = {playBuzzer , false, false, 3, 2};
+struct TCB LED      = {blinkLED   , false, false };
+struct TCB Count10  = {counter    , false, false };
+struct TCB Buzz     = {playBuzzer , false, false };
 
 // Insertion of TCB structs into larger TCB array
 struct TCB tasks[3] = {Buzz, Count10, LED};
