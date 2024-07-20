@@ -32,6 +32,7 @@ void loop() {
   // Clear remaining bytes in Serial Monitor
   while(Serial.available() > 0) {
     char t = Serial.read();
+    t = t ;  // Avoid compiler warnings about how t is "unused"
   }
   
   // Create arrays with instructions for clearing the LCD and setting the cursor to the first line

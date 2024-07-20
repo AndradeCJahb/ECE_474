@@ -68,6 +68,7 @@ void loop() {
     // Clear remaining bytes in Serial Monitor
     while(Serial.available() > 0) {
       char t = Serial.read();
+      t = t ;  // Avoid compiler warnings about how t is "unused"
     }
 
     uint8_t *data = &buffer[0]; //copy the address of the buffer array to put in the esp_now_send function
