@@ -1,6 +1,6 @@
 // Filename:    c_prog2.c
 // Author:      Christopher Andrade
-// Date:        7/12/24
+// Date:        7/22/24
 // Description: This .c file contains solutions to multiple exercises to gain experience and proficiency with C programming.
 
 /*
@@ -25,7 +25,6 @@ Format of assignment:
 */
 #include "c_prog2.h"
 
-
 /*******************************************************************************
    Part 1:  Bitwise operations
 *******************************************************************************/
@@ -40,7 +39,6 @@ Format of assignment:
  * COMPLEMENTING or TOGGLING a bit means that if K-th bit is 1, then change it
  * to 0 and if it is 0 then change it to 1.
 */
-
 
 /* Part 1.1 Write the function long mangle(long SID) which will take your sudent
  * ID and alter it in ways that depend on the binary representation of it as an
@@ -58,6 +56,7 @@ Format of assignment:
  *    Your mangled SID is 12812
  */
 
+// Description: This function takes a student ID and performs bit manipulation on it.
 long mangle(long SID){
     SID >>= 2;
     SID &= ~(1 << 6);
@@ -99,6 +98,8 @@ long mangle(long SID){
  *  bit_check(d, offmask1, offmask1) --> -1 // contradictory
  */
 
+// Description: This function checks if the bits_on and off masks match the inputted data (if all bits_off are 0 and all bits_on are 1).
+//              Returns -1 if the bits_on and bits_off masks overlap, 1 if the data matches the masks, and 0 if the data does not match the masks.
 int bit_check(int data, int bits_on, int bits_off){
     if (bits_off & bits_on) {
         return -1;
@@ -126,6 +127,7 @@ char a_array[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O',
  * Dereferencing that pointer should then print 'A'
  */
 
+// Description: This function returns a pointer to the inputted character in the a_array.
 char* pmatch(char c){
     char* retPtr = NULL;
 
@@ -145,6 +147,8 @@ char* pmatch(char c){
  * capital letter A-Y, return -1.
  */
 
+// Description: This function returns the next letter in the alphabet after the inputted characte.
+//              if the inputted character is 'Z' or NULL -1 is returned.
 signed char nlet(char *ptr){
     if (*ptr == 'Z' || ptr == NULL) {
         return -1;
@@ -161,6 +165,7 @@ signed char nlet(char *ptr){
  * If either character is not a capital letter, return a negative number < -26
  */
 
+// Description: This function returns the "alphabet distance" between two inputted characters (c2 - c1).
 int ldif(char c1, char c2){
     char* letter1 = pmatch(c1);
     char* letter2 = pmatch(c2);
@@ -204,6 +209,8 @@ int ldif(char c1, char c2){
  * 'structure padding in C' to see why. For example, the computer processes 
  * data in the minimum of 4 or 8 bytes for 32/64 bit processors.
  */
+
+// Description: This function returns the size of a person struct in bytes.
 int personSize(Person p){
     return sizeof(p);
 }
@@ -235,12 +242,15 @@ int personSize(Person p){
  *  DOB 1/1/1900:     34780
  *  -----------------------
  */
+
+// Description: This function takes a float and outputs its integer and decimal parts into seperate array indicies within "output".
 void float_to_ints(float f, int* output){
     output[0] = (int) f;
     output[1] = (int) ((f - output[0]) * 100);
     return;
 }
 
+// Description: This function formats a person struct and places the formatted string into a returned char buffer.
 char* per_print(Person *p, char* personbuf) {
     int heightArr[2] = {0, 0};
     int weightArr[2] = {0, 0};
