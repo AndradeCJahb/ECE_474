@@ -1,0 +1,56 @@
+12:44:27.652 -> Part 1.1: Enter your UW Student ID number...
+12:44:33.531 ->  You entered 51218
+12:44:33.531 ->  Your mangled SID is 12812
+12:44:33.531 -> 
+12:44:33.531 -> Part 1.2: Check the bit_check() function
+12:44:33.531 -> 
+12:44:33.531 -> d = 20 Hex: 14, Octal: 24
+12:44:33.531 -> bit_check(20,3,4): 0
+12:44:33.531 -> bit_check(20,3,1): -1
+12:44:33.531 -> bit_check(20,4,1): 1
+12:44:33.531 -> bit_check(20,4,4): -1
+12:44:33.531 -> bit_check(129753, 129753, ~129753): 1
+12:44:33.531 -> d = 36928 Hex: 9040, Octal: 110100
+12:44:33.531 -> bit_check(32768+4096+64, 4096+64, 16384): 1
+12:44:33.531 -> bit_check(32768+4096+64, 4096+64, 32768): 0
+12:44:33.531 -> 
+12:44:33.531 -> Part 2.1: Enter a capital letter...
+12:44:41.611 ->  You entered: J
+12:44:41.611 -> Part 2.2: The next letter after J is K
+12:44:41.611 -> Part 2.2: The next letter after Z is -1
+12:44:41.611 -> 
+12:44:41.611 -> Part 2.3: M and Q are 4 positions apart
+12:44:41.611 -> Part 2.3: x and Q are -27 positions apart
+12:44:41.611 -> 
+12:44:41.611 -> Part 3.2:  Size of a Person is 152
+12:44:41.611 -> Store some data about our person...
+12:44:41.611 -> Part 3.2:  Size of a Person is STILL 152
+12:44:41.611 -> Part 3.3:  Our test person is:
+12:44:41.611 -> --- person report: ----
+12:44:41.611 -> First Name:       Blake
+12:44:41.611 -> Last Name:        Hannaford
+12:44:41.611 -> Address:          124 N. Anystreet / Busytown, WA
+12:44:41.611 -> Zip:              99499
+12:44:41.611 -> Height (m):           1.97
+12:44:41.611 -> Weight (kg):           81.81
+12:44:41.611 -> DOB 1/1/1900:     34780
+12:44:41.611 -> -----------------------
+12:44:41.611 -> 
+12:44:41.611 -> Update address to: 
+12:44:41.611 ->  12903010542039840 NW Antidisetablishmentarianism Street, Apt.5/AnyTown, U.S.A.
+12:44:41.611 -> 
+12:44:41.611 -> Address stored in memory: 
+12:44:41.611 ->  12903010542039840 NW Antidisetablishmentarianism Street, Apt.5/AnyTown, U.S.A.
+12:44:41.611 -> 
+12:44:41.611 -> The new Address is 79 characters!
+12:44:41.611 -> Output will be truncated to 60 characters for printing.
+12:44:41.611 -> 
+12:44:41.611 -> --- person report: ----
+12:44:41.611 -> First Name:       Blake
+12:44:41.611 -> Last Name:        Hannaford
+12:44:41.611 -> Address:          12903010542039840 NW Antidisetablishmentarianism Street, Apt
+12:44:41.611 -> Zip:              99499
+12:44:41.611 -> Height (m):           1.97
+12:44:41.611 -> Weight (kg):           81.81
+12:44:41.611 -> DOB 1/1/1900:     34780
+12:44:41.611 -> -----------------------
