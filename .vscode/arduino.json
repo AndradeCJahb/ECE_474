@@ -1,5 +1,7 @@
 {
     "configuration": "PartitionScheme=default,PinNumbers=default,USBMode=default",
     "board": "arduino:esp32:nano_nora",
-    "sketch": "lab2\\Lab2Part3\\Lab2Part3.ino"
+    "sketch": "lab2\\Lab2Part3\\Lab2Part3.ino",
+    "port": "COM4",
+    "programmer": "esptool"
 }
