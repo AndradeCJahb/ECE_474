@@ -153,10 +153,10 @@ void AnomalyAlarmTask(void *arg) {
                 while(timerRead(timer) < 3000000); 
             }
             
-            // Reset the buzzer flag
+            // Reset the buzzer flaga
             buzz = false;
         } else if (xSemaphoreTake(semaphoreHandle, portMAX_DELAY) == pdPASS) {
-            if (SMA < 300 || SMA > 3800) {
+            if (SMA < 2000 || SMA > 3000) {
                 buzz = true; // Set boolean flag to activate buzzer in the next loop iteration
             }
 

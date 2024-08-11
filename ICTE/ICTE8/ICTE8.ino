@@ -1,3 +1,12 @@
+// Filename:    ICTE8.ino
+// Author:      Christopher Andrade (2221525), Theo Favour (2169814)
+// Date:        8/5/2024
+// Description: This file takes input from the Serial monitor and sets the duty cycle of an offboard LED to the aforementioned input utilizing a queue.
+
+#define BUZZER_PIN 3     
+
+TaskHandle_t vATaskHandle;
+
 struct AMessage {
 char ucMessageID;
 char ucData[ 20 ];
@@ -27,7 +36,13 @@ void vATask( void *pvParameters ) {
         xQueueGenericSend( xQueue2, ( void * ) &pxMessage, ( TickType_t ) 0, queueSEND_TO_BACK );
     }
 
-    
+}
 
-// ... Rest of task code.
+
+void setup() {
+    Serial.begin(115200);
+    while(!Serial);
+    
+    xTaskCreate(vATask, "vATask" , 2024, NULL, 1, &vATaskHandle);
+    xTaskCreate(ledTask, "ledTask", 2024, NULL, 1, &ledTaskHandle);
 }
