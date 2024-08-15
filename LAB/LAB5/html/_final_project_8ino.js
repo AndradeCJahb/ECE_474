@@ -1,0 +1,27 @@
+var _final_project_8ino =
+[
+    [ "BuzzerTimeTask", "_final_project_8ino.html#aa468e664b789dd79fcd209d598c7aa23", null ],
+    [ "GameEndTask", "_final_project_8ino.html#a9e85b706a8f16e3038f10be345bef5b1", null ],
+    [ "JoystickGameTask", "_final_project_8ino.html#ad4746b374a4a2cf427733ec2fa063741", null ],
+    [ "JoystickInputTask", "_final_project_8ino.html#a861b553de36c6878ff14d5cebc939b19", null ],
+    [ "JoystickProducerTask", "_final_project_8ino.html#a3fb484af4b0842aa8aba4316ce31ea5e", null ],
+    [ "lcd", "_final_project_8ino.html#ae084e1bc8ccb35ea289ba0ca4972ea6d", null ],
+    [ "loop", "_final_project_8ino.html#afe461d27b9c48d5921c00d521181f12f", null ],
+    [ "SerialRTCInputTask", "_final_project_8ino.html#ab895ed75a09efb92402fe1069ea0d260", null ],
+    [ "setup", "_final_project_8ino.html#a4fc01d736fe50cf5b977f755b675f11d", null ],
+    [ "AnalogX", "_final_project_8ino.html#a7addb28347f8bb44a7f717e1d0233d3f", null ],
+    [ "BuzzerTimeTaskHandle", "_final_project_8ino.html#a7482ebb07a001d26466833df601ae313", null ],
+    [ "DirectionsQueue", "_final_project_8ino.html#aa2c32a019adb6b9617d1325ed142d620", null ],
+    [ "GameEndTaskHandle", "_final_project_8ino.html#af6976bbc35ac96f8ddf6f082bcec276f", null ],
+    [ "joystick_x_pin", "_final_project_8ino.html#a9ae5f8f5407f6cf8acea1efc7a28dad4", null ],
+    [ "JoystickGameTaskHandle", "_final_project_8ino.html#a583e61790b3703356e2edae4756364cb", null ],
+    [ "JoystickInputTaskHandle", "_final_project_8ino.html#acb4faeb145377429b57163d2c30b990b", null ],
+    [ "joystickRunning", "_final_project_8ino.html#a557df7907d596361e50b13aa780c3086", null ],
+    [ "joystickStart", "_final_project_8ino.html#af0b364aae7aed3f5e476d4da5614aef4", null ],
+    [ "joystickWin", "_final_project_8ino.html#a55f1c711c14eb0481e1a0ac75ca97b70", null ],
+    [ "lose", "_final_project_8ino.html#a5c625d4e340a06add32f9025bea041d8", null ],
+    [ "RTCWin", "_final_project_8ino.html#aa4a6cea3da9d94347910447b4d859e36", null ],
+    [ "SerialRTCTaskHandle", "_final_project_8ino.html#ae5bfe11ff1a8e94d1918928f951cddeb", null ],
+    [ "timeCountDown", "_final_project_8ino.html#a42e79a945616e3062e870737e4657c36", null ],
+    [ "win", "_final_project_8ino.html#a267de1172374b2ece9b338aeeab9cb09", null ]
+];
