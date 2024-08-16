@@ -1,8 +1,8 @@
 /**
- * @file FinalProject.ino
+ * @file FinalProject_DebugOrSegfault.ino
  * @brief Final Project for EECSE 474 Embedded Systems including a couple game tasks to be completed to win or "Debug" the system.
  * 
- * The project includes a Joystick minigame and a RTC task to be completed to win the game. The game also includes a displayed timer and buzzer to indicate time remaining.
+ * The project includes a Joystick direction task and a RTC task to be completed to win the game. The game also includes a displayed timer and buzzer to indicate time remaining.
  * 
  * @date 2024-08-14
  * @authors Christopher Andrade (2221525), Theo Favour (2169814)
@@ -38,7 +38,6 @@ volatile bool joystickStart = false;        /**< Flag indicating when to begin t
 volatile bool RTCWin = false;               /**< Flag indicating whether the user has completed the RTC task */  
 volatile bool lose = false;                 /**< Flag indicating whether the user has lost by timeout or misinput */
 volatile bool joystickRunning = false;      /**< Flag indicating when to begin the joystick input detecting phase */
-
 
 volatile int timeCountDown;                 /**< Global timeRemaining variable */
 
@@ -199,7 +198,6 @@ void JoystickInputTask(void *pvParameters) {
         }
         vTaskDelay(20/portTICK_PERIOD_MS);                  // 50 Hz frequency for task
     }
-    
 }
 
 /**
@@ -288,8 +286,7 @@ void JoystickGameTask(void *pvParameters) {
                     vTaskDelete(NULL);
                 }
             }
-        }
-        
+        } 
         vTaskDelay(31/portTICK_PERIOD_MS);  // 32 Hz frequency for task after initial sequence display
     }
 }
@@ -300,10 +297,10 @@ void JoystickGameTask(void *pvParameters) {
  * Requires the user to input the time, in an HHMM (Hour Minute Minute) format to the serial monitor to complete the task. Uses the RTC module for real time measurement
  */
 void SerialRTCInputTask(void *pvParameters) {
-  while (1) {
-    char inputBuffer[4];
-    int hour;
-    int minute;
+    while (1) {
+        char inputBuffer[4];
+        int hour;
+        int minute;
 
     if (Serial.available() > 0) {
         // Get current hour and minute from RTC
@@ -331,7 +328,7 @@ void SerialRTCInputTask(void *pvParameters) {
     }
     
     vTaskDelay(31/portTICK_PERIOD_MS);  // 32 Hz frequency for task
-  }
+    }
 }
 
 void loop() {}

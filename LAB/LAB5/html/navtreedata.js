@@ -38,7 +38,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_final_project_8ino.html"
+"_final_project___debug_or_segfault_8ino.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
